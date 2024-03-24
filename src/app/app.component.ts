@@ -30,6 +30,7 @@ export class AppComponent implements OnInit{
   }
 
   loadCart(){
+    this.subTotal =0;
     this.productService.getCartItemsByCustomerId(1).subscribe((res:any)=>{
       this.cartProducts = res.data;
       this.cartProducts.forEach(element =>{
