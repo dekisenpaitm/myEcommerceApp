@@ -12,39 +12,36 @@ export class HomeComponent implements OnInit{
 
 productList:any[] = [];
 
-cart!:Cart;
+cartObj : any = {
+  "CartId": 0,
+  "CustId": 1,
+  "ProductId": 0,
+  "Quantity": 0,
+  "AddedDate": "2023-04-27T07:12:40.926Z"
+};
+constructor(private productService: ProductService) {
 
-constructor(private productService:ProductService){
 }
-
-//we're adding the ngOnInit lifeCycleHook in here to fetch all the data upon initialization
-//this could also be done in the constructor as well
-
 ngOnInit(): void {
+  debugger;
   this.loadAllProducts();
 }
 
-
-//we're injecting the service into the home component
-//after that we are subscribing to it and returning the result as ANY type
-//now we're packing our result.data into our productList
-
-
-loadAllProducts(){
-  this.productService.getAllProducts().subscribe((result:any)=>{
+loadAllProducts() {
+  debugger;
+  this.productService.getAllProducts().subscribe((result: any)=>{
     this.productList = result.data;
   })
 }
 
-addItemToCart(productId:number){
-  this.cart = new Cart()
-  this.cart.CustId = 1;
-  this.cart.ProductId = productId;
-  console.log(this.cart);
-  this.productService.addToCart(this.cart).subscribe((result:any)=>{
-  this.productList = result.data;
-  console.log(result.data)
+addItemToCart(productId: number) {
+  debugger;
+  this.cartObj.ProductId = productId;
+  this.productService.addToCart(this.cartObj).subscribe((result: any)=>{
+     if(result.result) {
+      alert("Product Added To Cart");
+      this.productService.cartAddedSubject.next(true);
+     }
   })
 }
-
 }

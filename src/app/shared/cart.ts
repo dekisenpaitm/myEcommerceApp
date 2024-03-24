@@ -1,7 +1,7 @@
 export class Cart{
-  CartId:number = 0;
-  CustId:number = 0;
-  ProductId:number = 0;
-  Quantity:number = 0;
-  AddedDate: any = "2023-04-27T07:12:40.926Z";
+  "CartId" = 0;
+  "CustId" = 0;
+  "ProductId" = 0;
+  "Quantity" = 0;
+  "AddedDate" = "2023-04-27T07:12:40.926Z";
 }

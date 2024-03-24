@@ -83,7 +83,7 @@
             <a class="nav-link dropdown-toggle cart fw-semibold text-uppercase text-black  me-1" href="#"
               id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="fa fa-cart-plus fs-5" style="color: #202122;"></i>
-              <span class="position-absolute  translate-middle badge rounded-pill bg-danger">
+              <span class="position-absolute  translate-middle badge rounded-pill bg-danger">{{cartProducts.length}}
                 <span class="visually-hidden">unread messages</span>
               </span>
             </a>
@@ -97,15 +97,18 @@
                     Remove All
                   </div>
                 </div>
-                <div class="row pt-1">
+                <div class="row pt-1" *ngFor="let cart of cartProducts">
                   <div class="col-4">
-                    <img class="img-fluid" style="height: 30px;border-radius: 50%;" class="card-img-top">
+                    <img class="img-fluid" style="height: 30px; object-fit: cover;" class="card-img-top" [src]="cart.productImageUrl">
                   </div>
                   <div class="col-3">
+                    {{cart.categoryName}}
                   </div>
                   <div class="col-2">
+                    {{cart.quantity + 1}}
                   </div>
                   <div class="col-2 text-end">
+                    {{cart.productPrice}}
                   </div>
                 </div>
 
@@ -130,12 +133,12 @@
                     <div> <small> 2 items</small></div>
                   </div>
                   <div class="col-4 text-end">
-                    <strong></strong>
+                    <strong>{{subTotal | currency}}</strong>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12 text-end">
-                    <button class="btn btn-sm btn-success">Checkout</button>
+                    <button class="btn btn-sm btn-success" routerLink="sale">Checkout</button>
                   </div>
                 </div>
               </div>
